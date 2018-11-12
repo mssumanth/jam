@@ -37,7 +37,9 @@ let Spotify = {
                         name : track.name,
                         artist : track.artists[0].name,
                         album : track.album.name,
-                        uri : track.uri
+                        uri : track.uri,
+                        //PreviewUrl for the feature addition.
+                        preview_url : track.preview_url
                     };
                 });
             } else {
@@ -50,7 +52,6 @@ let Spotify = {
         if(playlistName === "" || playlistName === null || trackURIs.length === 0 || trackURIs === null){
             return;
         } 
-        //let access_token = accessToken;
         let headers = {'Authorization': `Bearer ${accessToken}`  };
         let userID = '';
         let playlistID = '';
@@ -87,9 +88,8 @@ let Spotify = {
                             if(response.ok){
                                 return response.json();
                             }
-                            throw new Error("Request failed!");
+                            throw new Error("Request failed!"+response.json());
                         }, networkError => {
-                            console.log(networkError.message);
                         }).then(jsonResponse => {
                             if(jsonResponse.id){
                                 playlistID = jsonResponse.id;
@@ -100,6 +100,7 @@ let Spotify = {
                 });
         
     }
+
 
 }
 

@@ -9,6 +9,7 @@ class Track extends Component {
         this.removeTrack = this.removeTrack.bind(this);
     }
 
+
     addTrack(event){
         event.preventDefault();
         this.props.onAdd(this.props.track);
@@ -39,9 +40,25 @@ class Track extends Component {
                         {/*<!-- track artist will go here--> | <!-- track album will go here -->*/}
                         {this.props.track.artist} | {this.props.track.album}
                     </p>
+                    <p>
+                        <br/>
+                        Preview:
+                    </p>                        
+
+                    {/*Adding the audio preview button here in the Track Component.*/}
+                    <p>
+                        <br/>
+                        <audio controls>
+                            <source src={this.props.track.preview_url}/>
+                            Your browser does not support the audio element.
+                        </audio>
+                    </p>
+
                 </div>
-                {/*<!-- + or - will go here -->*/}
-                {this.renderAction()}
+                <div>
+                    {this.renderAction()}
+                    
+                </div>
             </div>
         );
     }
